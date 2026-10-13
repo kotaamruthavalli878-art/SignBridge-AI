@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-base-size: 16px;
+  --bg-primary: #0a0f1d;
+  --bg-secondary: #0f172a;
+  --bg-card: #1e293b;
+  --border-color: rgba(51, 65, 85, 0.7);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --accent-teal: #14b8a6;
+  --accent-glow: rgba(20, 184, 166, 0.25);
+}
+
+html {
+  font-size: var(--font-base-size);
+  scroll-behavior: smooth;
+  font-family: 'Inter', system-ui, sans-serif;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Accessibility: Text Size Classes */
+html.font-size-large {
+  --font-base-size: 18px;
+}
+
+html.font-size-xlarge {
+  --font-base-size: 21px;
+}
+
+/* Accessibility: High Contrast Mode */
+html.high-contrast {
+  --bg-primary: #000000;
+  --bg-secondary: #050505;
+  --bg-card: #0c0c0c;
+  --border-color: #ffffff;
+  --text-main: #ffffff;
+  --text-muted: #e2e8f0;
+  --accent-teal: #00ffff;
+  --accent-glow: rgba(0, 255, 255, 0.5);
+}
+
+html.high-contrast .card-accessible {
+  border-color: #ffffff !important;
+  background-color: #000000 !important;
+}
+
+html.high-contrast button,
+html.high-contrast a {
+  border-width: 2px !important;
+}
+
+/* Accessibility: Reduced Motion */
+html.reduced-motion *,
+html.reduced-motion *::before,
+html.reduced-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}
+
+/* Accessibility: Focus indicators */
+*:focus-visible {
+  outline: 3px solid #2dd4bf !important;
+  outline-offset: 3px !important;
+  border-radius: 4px;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #14b8a6;
+}
+
+/* Glassmorphism & Card Utilities */
+.glass-panel {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.glass-panel-hover {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-panel-hover:hover {
+  transform: translateY(-2px);
+  border-color: rgba(20, 184, 166, 0.4);
+  box-shadow: 0 10px 25px -5px rgba(20, 184, 166, 0.15);
+}
+
+.font-heading {
+  font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+}

@@ -1,0 +1,396 @@
+export const seedSignsData = [
+  // Greetings
+  {
+    signId: 'namaste-hello',
+    signName: 'Namaste / Hello',
+    signNameTelugu: 'నమస్కారం / హలో',
+    meaning: 'Universal polite greeting and opening communication acknowledgment.',
+    category: 'greetings',
+    supportedLanguage: 'Indian Sign Language (ISL) & Universal Greeting',
+    verificationStatus: 'verified',
+    regionalNotes: 'In ISL, palms pressed together in front of the chest (Namaste) is the primary formal greeting; an open hand waving outward at eye level is also widely recognized.',
+    gesturesDescription: 'Bring both open palms together touching at palm and fingertips in front of chest (Anjali mudra) with a gentle respectful nod.',
+    steps: [
+      'Bring both hands together in front of your chest.',
+      'Align fingertips pointing upward and press palms lightly together.',
+      'Accompany with a courteous nod of the head and warm eye contact.',
+      'Alternative informal: Raise dominant hand to temple level with open palm facing out, gently waving side to side.'
+    ],
+    landmarkHints: 'Both hands joined in prayer position or single hand open palm wave.',
+  },
+  {
+    signId: 'thank-you',
+    signName: 'Thank You',
+    signNameTelugu: 'ధన్యవాదాలు',
+    meaning: 'Expressing gratitude or appreciation after assistance or conversation.',
+    category: 'greetings',
+    supportedLanguage: 'ISL & ASL Common Standard',
+    verificationStatus: 'verified',
+    regionalNotes: 'Widely standardized gesture recognized across ISL and international sign communities.',
+    gesturesDescription: 'Flat dominant hand touches chin or lips with fingers together, then moves smoothly forward and slightly downward toward the recipient with open palm facing upward/forward.',
+    steps: [
+      'Place fingertips of your flat dominant hand lightly on your chin or lower lip.',
+      'Palm faces toward you, fingers straight and together.',
+      'Move your hand forward and downward toward the person you are thanking.',
+      'Accompany with a polite smile.'
+    ],
+    landmarkHints: 'Flat hand starting near mouth/chin and extending outward.',
+  },
+  {
+    signId: 'please',
+    signName: 'Please',
+    signNameTelugu: 'దయచేసి',
+    meaning: 'Polite request marker used when asking for assistance, directions, or patience.',
+    category: 'greetings',
+    supportedLanguage: 'ISL & ASL Standard',
+    verificationStatus: 'verified',
+    regionalNotes: 'Commonly used in customer service counters, clinics, and ticket counters.',
+    gesturesDescription: 'Flat dominant hand placed on the center of the chest, moving gently in a clockwise circular motion.',
+    steps: [
+      'Place open flat palm of your dominant hand on your center chest.',
+      'Fingers extended together, thumb resting comfortably beside.',
+      'Rub hand in a gentle circular motion over your chest 2-3 times.'
+    ],
+    landmarkHints: 'Flat palm resting on chest in circular motion.',
+  },
+  {
+    signId: 'good-morning',
+    signName: 'Good Morning',
+    signNameTelugu: 'శుభోదయం',
+    meaning: 'Morning greeting used upon greeting people at start of day.',
+    category: 'greetings',
+    supportedLanguage: 'ISL Standard',
+    verificationStatus: 'verified',
+    regionalNotes: 'Combines the sign for GOOD (chin outward) with SUNRISE/MORNING (hand rising upward like sun rising over horizon).',
+    gesturesDescription: 'Sign "Good" (chin outward flat hand), then rest non-dominant arm horizontally while dominant hand rises up underneath it like a rising sun.',
+    steps: [
+      'Perform "Good" by moving flat hand from chin outward.',
+      'Place non-dominant forearm horizontal in front of you.',
+      'Bring dominant hand from below the arm straight upward with fingers open, mimicking sunrise.'
+    ],
+    landmarkHints: 'Horizontal forearm barrier with rising dominant palm.',
+  },
+
+  // Healthcare
+  {
+    signId: 'doctor',
+    signName: 'Doctor',
+    signNameTelugu: 'వైద్యుడు / డాక్టర్',
+    meaning: 'Signifies a physician, medical doctor, or medical consultation.',
+    category: 'healthcare',
+    supportedLanguage: 'ISL Standard & International Healthcare Sign',
+    verificationStatus: 'verified',
+    regionalNotes: 'In ISL, this mimics taking pulse at the wrist, a universal medical examination reference.',
+    gesturesDescription: 'Extend non-dominant arm forward with palm up. Tap the inside of your non-dominant wrist with index and middle fingers of dominant hand, mimicking checking radial pulse.',
+    steps: [
+      'Hold non-dominant wrist forward, palm facing up or relaxed.',
+      'Take index and middle fingers of dominant hand (joined together).',
+      'Tap 2-3 times gently on the radial artery pulse point on the wrist.',
+      'In hospital contexts, indicate urgency with facial expression if critical.'
+    ],
+    landmarkHints: 'Two fingers tapping the opposite wrist pulse point.',
+  },
+  {
+    signId: 'hospital',
+    signName: 'Hospital',
+    signNameTelugu: 'ఆసుపత్రి',
+    meaning: 'Refers to a hospital, medical clinic, or healthcare facility.',
+    category: 'healthcare',
+    supportedLanguage: 'ISL & International Standard',
+    verificationStatus: 'verified',
+    regionalNotes: 'Visualizes the Red Cross emblem recognized on medical institutions worldwide.',
+    gesturesDescription: 'Use index finger of dominant hand to trace a small cross (+) on the opposite upper arm or shoulder.',
+    steps: [
+      'Form an index finger pointing shape with dominant hand.',
+      'Draw a vertical downward line on the outside of non-dominant upper arm.',
+      'Follow immediately with a horizontal line across the first line, forming a cross shape (+).'
+    ],
+    landmarkHints: 'Cross drawing gesture on opposite bicep.',
+  },
+  {
+    signId: 'medicine-tablet',
+    signName: 'Medicine / Tablets',
+    signNameTelugu: 'మందులు / మాత్రలు',
+    meaning: 'Prescription drugs, pills, tablets, or medical remedies.',
+    category: 'healthcare',
+    supportedLanguage: 'ISL & ASL Common Standard',
+    verificationStatus: 'verified',
+    regionalNotes: 'Can also be accompanied by a gesture mimicking placing a tablet in mouth and drinking water if asking for pills.',
+    gesturesDescription: 'Open flat non-dominant palm facing up. Dominant middle finger rubs or twists in a small circular motion on the center of the palm, symbolizing grinding or preparing medicine.',
+    steps: [
+      'Open non-dominant hand flat, palm facing ceiling.',
+      'Lower middle finger of dominant hand slightly downward.',
+      'Touch and swirl the middle fingertip in the palm center 2-3 times.'
+    ],
+    landmarkHints: 'Middle finger grinding motion in flat open palm.',
+  },
+  {
+    signId: 'pain-hurt',
+    signName: 'Pain / Hurt',
+    signNameTelugu: 'నొప్పి / బాధ',
+    meaning: 'Indicates physical pain, ache, discomfort, or injury.',
+    category: 'healthcare',
+    supportedLanguage: 'ISL & ASL Common Standard',
+    verificationStatus: 'verified',
+    regionalNotes: 'Move the gesture directly near the body part that hurts (e.g., near head for headache, near stomach for abdominal pain).',
+    gesturesDescription: 'Both hands have index fingers extended pointing toward each other. Twist or thrust them toward each other twice with a grimace or pained facial expression.',
+    steps: [
+      'Extend index fingers on both hands, other fingers curled into fists.',
+      'Point the two index fingertips directly toward each other with a few inches space.',
+      'Twist wrists back and forth or jab fingertips toward each other sharply twice.',
+      'Position the hands near the area of pain (head, stomach, chest, leg).'
+    ],
+    landmarkHints: 'Two index fingers facing each other with sharp pulsing motion.',
+  },
+  {
+    signId: 'water',
+    signName: 'Water',
+    signNameTelugu: 'నీరు / మంచినీరు',
+    meaning: 'Requesting drinking water or indicating dehydration.',
+    category: 'healthcare',
+    supportedLanguage: 'ISL & ASL Standard',
+    verificationStatus: 'verified',
+    regionalNotes: 'ASL uses "W" handshape tapping chin; ISL frequently uses thumb-to-mouth drinking gesture or "W" tap in bilingual schools.',
+    gesturesDescription: 'Form a "W" with index, middle, and ring fingers extended and thumb holding pinky. Tap index finger twice against the side of the chin or lower lip.',
+    steps: [
+      'Extend index, middle, and ring fingers upward.',
+      'Fold pinky and touch thumb across it (forming letter W).',
+      'Tap the side of your index finger against your chin/lower lip twice.',
+      'Alternative: Cup hand as if holding a small vessel and tilt toward mouth.'
+    ],
+    landmarkHints: 'Three fingers extended (W) tapping chin.',
+  },
+
+  // Emergency
+  {
+    signId: 'help',
+    signName: 'Help / Assistance',
+    signNameTelugu: 'సహాయం',
+    meaning: 'Urgent call for aid, assistance, or physical support.',
+    category: 'emergency',
+    supportedLanguage: 'ISL & ASL Universal Emergency Sign',
+    verificationStatus: 'verified',
+    regionalNotes: 'Universally recognized sign. Moving the sign toward yourself means "Help me"; moving outward toward others means "I help you".',
+    gesturesDescription: 'Form a closed fist with thumb pointing upward (thumbs up) on dominant hand. Place it on the flat palm of non-dominant hand. Lift both hands together upward.',
+    steps: [
+      'Make a thumbs-up shape with dominant hand.',
+      'Open non-dominant hand flat, palm facing upward.',
+      'Rest the bottom of the thumbs-up fist onto the flat palm.',
+      'Lift both hands upward together toward chest height with an alert expression.'
+    ],
+    landmarkHints: 'Thumbs up resting on flat base palm lifted upward.',
+  },
+  {
+    signId: 'emergency',
+    signName: 'Emergency',
+    signNameTelugu: 'అత్యవసరం',
+    meaning: 'Critical urgent situation requiring immediate intervention.',
+    category: 'emergency',
+    supportedLanguage: 'ISL & ASL Standard',
+    verificationStatus: 'verified',
+    regionalNotes: 'In emergency situations, pair with urgent eye and facial expression.',
+    gesturesDescription: 'Form an "E" shape with dominant hand (fingers curled into fingertips touching thumb tip). Shake or wave the hand rapidly side to side in front of chest.',
+    steps: [
+      'Curl four fingers with fingertips resting against the tip of thumb (E shape).',
+      'Hold hand at chest height.',
+      'Shake wrist side-to-side in a rapid, agitated motion.',
+      'Maintain alert, widened eyes to convey urgency.'
+    ],
+    landmarkHints: 'Curled E handshape shaking with urgent motion.',
+  },
+  {
+    signId: 'call-police',
+    signName: 'Call Police',
+    signNameTelugu: 'పోలీసులను పిలవండి',
+    meaning: 'Requesting immediate police or security intervention.',
+    category: 'emergency',
+    supportedLanguage: 'ISL Standard',
+    verificationStatus: 'verified',
+    regionalNotes: 'Combines police identification gesture (badge or cap salute) with phone gesture.',
+    gesturesDescription: 'Touch forehead or chest with "C" handshape (police badge/cap), followed by telephone handshape (thumb at ear, pinky at mouth).',
+    steps: [
+      'Dominant hand forms a curved "C" shape over opposite chest pocket area (representing police badge).',
+      'Immediately transition hand into phone gesture: extend thumb and pinky, holding thumb to ear and pinky toward mouth.'
+    ],
+    landmarkHints: 'Badge tap followed by phone hand shape to ear.',
+  },
+  {
+    signId: 'danger-alert',
+    signName: 'Danger / Be Careful',
+    signNameTelugu: 'ప్రమాదం / జాగ్రత్త',
+    meaning: 'Warning of hazard, physical threat, or caution.',
+    category: 'emergency',
+    supportedLanguage: 'ISL & International Standard',
+    verificationStatus: 'verified',
+    regionalNotes: 'High-visibility safety sign across public spaces and industrial settings.',
+    gesturesDescription: 'Both palms held flat facing outward toward hazard at chest height, making two pushing/recoiling motions with an alarming facial expression.',
+    steps: [
+      'Raise both hands to chest height, palms facing outward toward recipient.',
+      'Fingers spread slightly in alert position.',
+      'Push hands slightly forward and back twice, indicating "halt / beware".'
+    ],
+    landmarkHints: 'Both palms facing out pushing forward cautiously.',
+  },
+
+  // Education
+  {
+    signId: 'teacher',
+    signName: 'Teacher',
+    signNameTelugu: 'ఉపాధ్యాయుడు / అధ్యాపకుడు',
+    meaning: 'Educator, instructor, lecturer, or trainer.',
+    category: 'education',
+    supportedLanguage: 'ISL Standard & ASL Cognate',
+    verificationStatus: 'verified',
+    regionalNotes: 'Combines the sign for "teach/instruct" with the "person/agent" suffix marker.',
+    gesturesDescription: 'Both hands in flat-O or cupped shape near temples, moving forward twice, then opening palms flat downward along body indicating person marker.',
+    steps: [
+      'Bring both hands near temples with fingertips grouped together.',
+      'Move hands straight forward a few inches twice (passing knowledge).',
+      'Lower both hands with flat palms facing each other down torso (person marker).'
+    ],
+    landmarkHints: 'Two hands moving forward from temple and dropping down.',
+  },
+  {
+    signId: 'book-study',
+    signName: 'Book / Study',
+    signNameTelugu: 'పుస్తకం / చదువు',
+    meaning: 'Reading material, textbooks, study session, or education.',
+    category: 'education',
+    supportedLanguage: 'ISL & International Standard',
+    verificationStatus: 'verified',
+    regionalNotes: 'Highly iconic gesture resembling opening the leaves of a book.',
+    gesturesDescription: 'Palms pressed together vertically with pinkies touching, then hinging open with pinkies remaining together like opening a printed book.',
+    steps: [
+      'Bring both hands together with palms flat against each other, fingers pointing outward.',
+      'Keep the outer edges (pinky sides) touching together as a hinge.',
+      'Open the palms apart facing upward toward your face, as if opening a book.'
+    ],
+    landmarkHints: 'Palms hinged open like a book facing upward.',
+  },
+  {
+    signId: 'understand',
+    signName: 'Understand',
+    signNameTelugu: 'అర్థమైంది',
+    meaning: 'Acknowledge comprehension of instructions, concepts, or speech.',
+    category: 'education',
+    supportedLanguage: 'ISL & ASL Common Standard',
+    verificationStatus: 'verified',
+    regionalNotes: 'Iconic lightbulb-flick gesture representing sudden clarity or knowledge acquisition.',
+    gesturesDescription: 'Hold dominant hand in a loose fist next to forehead with palm facing back. Flick index finger quickly straight up, like a lightbulb turning on, nodding head.',
+    steps: [
+      'Bring dominant hand near right temple/forehead in a loose fist.',
+      'Keep thumb touching bent index finger.',
+      'Flick index finger swiftly straight upward into an upright point.',
+      'Nod head affirmatively with an understanding expression.'
+    ],
+    landmarkHints: 'Index finger flicking upward beside temple.',
+  },
+  {
+    signId: 'repeat-again',
+    signName: 'Repeat / Please Say Again',
+    signNameTelugu: 'మళ్లీ చెప్పండి / పునరావృతం చేయండి',
+    meaning: 'Asking speaker or signer to repeat what was just communicated.',
+    category: 'education',
+    supportedLanguage: 'ISL & ASL Standard',
+    verificationStatus: 'verified',
+    regionalNotes: 'Essential classroom and public counter interaction sign.',
+    gesturesDescription: 'Non-dominant palm held open flat facing up. Dominant hand bends at knuckles into an arch, moves in an arc and lands firmly into the palm.',
+    steps: [
+      'Hold non-dominant hand flat, palm facing upward at waist level.',
+      'Curve fingertips of dominant hand into an arch (bent flat hand).',
+      'Swing dominant hand in an arc over and drop fingertips into the center of the non-dominant palm.'
+    ],
+    landmarkHints: 'Curved dominant hand arcing onto flat open base palm.',
+  },
+
+  // Daily Life
+  {
+    signId: 'yes',
+    signName: 'Yes',
+    signNameTelugu: 'అవును',
+    meaning: 'Affirmative response, agreement, consent.',
+    category: 'daily',
+    supportedLanguage: 'ISL & ASL Standard',
+    verificationStatus: 'verified',
+    regionalNotes: 'Mimics the human head nodding affirmatively.',
+    gesturesDescription: 'Make a fist with dominant hand at chest/shoulder level. Nod the fist forward and back at the wrist twice, like a head nodding yes.',
+    steps: [
+      'Close dominant hand into a loose fist (thumb resting across fingers).',
+      'Hold fist at shoulder height with knuckles facing forward.',
+      'Bend wrist down and up twice in a deliberate nodding motion.',
+      'Accompany with a pleasant head nod.'
+    ],
+    landmarkHints: 'Fist nodding up and down from the wrist.',
+  },
+  {
+    signId: 'no',
+    signName: 'No / Do Not Want',
+    signNameTelugu: 'కాదు / వద్దు',
+    meaning: 'Negative response, refusal, or disagreement.',
+    category: 'daily',
+    supportedLanguage: 'ISL & ASL Standard',
+    verificationStatus: 'verified',
+    regionalNotes: 'Widely used in everyday life, consultations, and requests.',
+    gesturesDescription: 'Extend index and middle fingers together, with thumb extended out. Snap index and middle fingers firmly down onto the thumb tip once or twice.',
+    steps: [
+      'Hold up dominant hand with index and middle fingers extended apart.',
+      'Thumb extended outwards.',
+      'Snap index and middle fingers down together to touch the pad of the thumb.',
+      'Accompany with a slight head shake.'
+    ],
+    landmarkHints: 'Index and middle fingers snapping down onto thumb.',
+  },
+  {
+    signId: 'i-am-deaf',
+    signName: 'I Am Deaf / Hard of Hearing',
+    signNameTelugu: 'నేను వినలేను (బధిరుడిని)',
+    meaning: 'Informs hearing individuals that the speaker is deaf or hard of hearing.',
+    category: 'daily',
+    supportedLanguage: 'ISL & ASL Standard',
+    verificationStatus: 'verified',
+    regionalNotes: 'Crucial self-identification sign when entering public offices, hospitals, or transit stations.',
+    gesturesDescription: 'Touch index finger of dominant hand to the ear, then move it across and touch the corner of the mouth or lips.',
+    steps: [
+      'Extend index finger of dominant hand.',
+      'Touch the fingertip lightly near the ear.',
+      'Move hand forward and touch fingertip lightly to the corner of the mouth.',
+      'Can be followed by pointing to self or displaying the Quick Message card.'
+    ],
+    landmarkHints: 'Index finger touching ear then moving to touch lips.',
+  },
+  {
+    signId: 'write-it-down',
+    signName: 'Please Write It Down',
+    signNameTelugu: 'దయచేసి రాసి చూపించండి',
+    meaning: 'Requests the other person to write their response on paper or mobile screen.',
+    category: 'daily',
+    supportedLanguage: 'ISL & International Standard',
+    verificationStatus: 'verified',
+    regionalNotes: 'High utility in government offices, ticket counters, and medical triage.',
+    gesturesDescription: 'Non-dominant hand held flat like a sheet of paper facing up. Dominant hand holds invisible pen (thumb and index pinched) and scribbles across palm.',
+    steps: [
+      'Hold non-dominant palm flat and steady in front of you (acting as paper).',
+      'Pinch thumb, index, and middle fingers together on dominant hand as if gripping a pen.',
+      'Scribble or draw a zigzag line across the flat palm twice.',
+      'Hand over a pen/paper or gesture to phone screen.'
+    ],
+    landmarkHints: 'Pen pinch hand miming writing across flat base palm.',
+  },
+  {
+    signId: 'peace-ok',
+    signName: 'Peace / OK / All Good',
+    signNameTelugu: 'శాంతి / అంతా బాగుంది',
+    meaning: 'Expressing harmony, reassurance, confirmation, or satisfaction.',
+    category: 'daily',
+    supportedLanguage: 'Universal Sign & ASL/ISL Common',
+    verificationStatus: 'verified',
+    regionalNotes: 'Used for quick visual confirmation across distances.',
+    gesturesDescription: 'V-sign with index and middle finger upright in Victory/Peace, or circle formed by touching thumb and index finger tip (OK sign).',
+    steps: [
+      'Raise dominant hand to shoulder height.',
+      'Extend index and middle fingers in a "V" shape, folding other fingers down.',
+      'Hold steady with palm facing forward.'
+    ],
+    landmarkHints: 'V-sign with two fingers extended upright.',
+  }
+];

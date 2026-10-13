@@ -1,0 +1,30 @@
+{
+  "name": "signbridge-ai",
+  "version": "1.0.0",
+  "description": "SignBridge AI — AI for Accessibility & Sign Language Inclusion Platform",
+  "private": true,
+  "scripts": {
+    "start": "npm run start --prefix server",
+    "dev:server": "npm run dev --prefix server",
+    "dev:client": "npm run dev --prefix client",
+    "build:client": "npm run build --prefix client",
+    "test": "npm run test --prefix server",
+    "install:all": "npm install --prefix server && npm install --prefix client"
+  },
+  "keywords": [
+    "accessibility",
+    "sign-language",
+    "indian-sign-language",
+    "asl",
+    "inclusion",
+    "gemini-ai",
+    "speech-to-text",
+    "text-to-speech",
+    "computer-vision",
+    "react",
+    "express",
+    "mongodb"
+  ],
+  "author": "SignBridge AI Team",
+  "license": "MIT"
+}
