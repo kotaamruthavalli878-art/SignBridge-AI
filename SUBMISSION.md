@@ -1,124 +1,150 @@
 # SignBridge AI — Hackathon Submission
 
-**AI for Accessibility & Inclusion | Complete Hackathon Assignment**
+**Theme:** AI for Accessibility & Inclusion  
+**Project Type:** AI-Powered Accessibility Web Application
 
 ---
 
 ## 1. Problem Statement
 
-Deaf and hard-of-hearing individuals frequently experience severe communication barriers in high-stakes public settings, including **hospitals, colleges, courts, police stations, and government service counters**. In these environments, people around them rarely understand sign language, and qualified interpreters are seldom available on immediate notice. 
+Deaf and hard-of-hearing individuals can face communication barriers in hospitals, colleges, courts, police stations, and government service counters. In these situations, hearing individuals may not understand sign language, and qualified interpreters may not be immediately available.
 
-This communication gap results in:
-- Delayed emergency healthcare triage and medication misunderstandings.
-- Educational disengagement and classroom isolation for deaf students.
-- Deprivation of civic services and legal representation.
-- Heightened vulnerability and reliance on hurried handwritten notes.
+These barriers can lead to:
+- Delays in communicating healthcare needs.
+- Difficulties participating in educational activities.
+- Challenges accessing public and civic services.
+- Dependence on handwritten notes or other communication methods.
 
-Communication equity is a fundamental human right. SignBridge AI provides an autonomous, real-time multimodal bridge so Deaf individuals and hearing public workers can converse seamlessly and respectfully.
-
----
+SignBridge AI aims to make everyday communication more accessible by providing a web-based platform that combines hand detection, text-to-speech, speech-to-text, and visual communication aids.
 
 ## 2. Solution Description
 
-**SignBridge AI** is an AI-powered accessibility platform engineered to support fluid two-way communication between sign-language users and hearing individuals. The application combines:
+**SignBridge AI** is an accessibility-focused web application designed to support communication between sign-language users and hearing individuals.
 
-1. **Sign-to-Text Recognition Workspace**: Webcam-based computer vision tracking classifying documented sample sign gestures with real-time confidence metrics, uncertainty alerts, and sentence compilation.
-2. **Text-to-Speech (TTS) Engine**: High-fidelity speech synthesizer converting typed statements into spoken audio with language, pitch, and rate customizations.
-3. **Speech-to-Text (STT) Hearing Aid**: Real-time microphone listener that transcribes spoken responses into high-contrast text transcripts with interim and final streaming display.
-4. **Text-to-Sign Learning Library**: Verified dictionary of Indian Sign Language (ISL) and universal signs across Healthcare, Emergency, Education, and Daily Life with step-by-step motion breakdowns.
-5. **Quick Situation Emergency Cards**: Instant one-tap phrase cards ("I need help", "Call a doctor", "Please write it down") equipped with a **Fullscreen High-Visibility Large Text Mode** designed for reception counters.
-6. **Multilingual Support (English & Telugu)**: Full interface translation toggle between English and Telugu (`తెలుగు`), with speech synthesis and translation helpers.
-7. **Cognitive Accessibility AI**: Modular Google Gemini API integration for simplifying complex bureaucratic or medical text into accessible plain language and drafting polite situation cards.
-8. **Universal Accessibility Customizations**: Scalable typography (Normal, Large, Extra Large), WCAG AAA High-Contrast mode, reduced-motion controls, and keyboard skip navigation.
+The project includes the following features, subject to the capabilities available in the deployed version:
 
----
+1. **Sign-to-Text Workspace:** Uses webcam input and MediaPipe hand landmarks to detect hand positions and classify a limited set of basic gesture patterns.
+2. **Text-to-Speech:** Uses browser speech synthesis to read typed messages aloud where supported.
+3. **Speech-to-Text:** Provides speech transcription through supported browser speech-recognition APIs.
+4. **Sign Learning Library:** Provides a place to explore sign-language learning content available in the application.
+5. **Quick Communication Cards:** Offers common phrases that users can display to communicate basic needs.
+6. **English and Telugu Support:** Provides language-related accessibility features where implemented.
+7. **AI-Assisted Text Support:** May provide text simplification or message drafting when the required AI service and API configuration are available.
+8. **Accessibility Options:** Provides interface accessibility settings where available, such as text-size adjustments and contrast controls.
+
+The project is intended as an assistive communication prototype. It does not replace professional interpreters, medical advice, or emergency services.
 
 ## 3. GitHub Repository
 
-> [!NOTE]  
-> Replace the placeholder below with the actual public repository URL after pushing to GitHub.
+**Public Repository:**  
+https://github.com/kotaamruthavalli878-art/SignBridge-AI
 
-```
-https://github.com/<your-username>/signbridge-ai
-```
+The repository contains the frontend and backend source code, project documentation, and configuration files.
 
-*(Local repository is fully prepared with `.gitignore`, clean git history, and separate `client/` and `server/` structures).*
+## 4. Deployed Application
 
----
+**Frontend Application (Vercel):**  
+https://sign-bridge-ai-swart.vercel.app
 
-## 4. Deployed Application Link
+**Backend Service (Render):**  
+https://signbridge-ai-c9o3.onrender.com
 
-> [!NOTE]  
-> Replace the placeholders below with the actual live deployment URLs after publishing.
-
-- **Frontend Application (Vercel / Netlify)**:  
-  `https://signbridge-ai.vercel.app` *(Placeholder — to be filled after Vercel deployment)*
-- **Backend API (Render / Railway)**:  
-  `https://signbridge-api.onrender.com` *(Placeholder — to be filled after Render deployment)*
-- **Backend Live Health Check Endpoint**:  
-  `https://signbridge-api.onrender.com/api/health`
-
----
+**Deployment Status:** The frontend deployment was reported as Ready in Vercel. The backend and application features should be tested independently before final evaluation.
 
 ## 5. Demo Video
 
-> [!NOTE]  
-> Replace the placeholder below with the uploaded video link (YouTube / Loom / Google Drive) after recording.
+**Demo Video URL:** To be added after recording and uploading the project demonstration.
 
-```
-https://youtu.be/<your-demo-video-id>
-```
+If the submission rules require a demo video, upload it to an accepted platform such as YouTube, Loom, or Google Drive and replace this line with the accessible link.
 
-### 3–5 Minute Video Script & Recording Checklist
+### Suggested Demo Plan (3–5 Minutes)
 
-| Timestamp | Video Section | Narration & Visual Actions |
+| Time | Section | Demonstration |
 |---|---|---|
-| **0:00–0:30** | **The Accessibility Problem** | **Visual**: Show emergency room / public office scenario. <br>**Narration**: "70 million Deaf people face daily communication barriers in hospitals, colleges, and civic counters where hearing people do not know sign language and interpreters are absent." |
-| **0:30–1:00** | **Introducing SignBridge AI** | **Visual**: Show SignBridge AI landing page, highlight tagline, and switch language between English and Telugu (`తెలుగు`). <br>**Narration**: "SignBridge AI is an AI-powered accessibility platform bridging silent voices and hearing communities through real-time vision, speech, and multilingual aids." |
-| **1:00–2:00** | **Live Communication Features** | **Visual**: <br>1. Open **Sign-to-Text Workspace**, start camera, test gesture detection, show confidence score (92%), and append to transcript. <br>2. Open **Text-to-Speech**, type a message, play vocal audio. <br>3. Open **Speech-to-Text**, speak into mic, show real-time transcription. <br>4. Open **Quick Communication**, tap "Call a Doctor", toggle Fullscreen Large Text view. |
-| **2:00–3:00** | **AI Integration & Honest Limitations** | **Visual**: Open AI Smart Message Drafter and AI Plain Language Simplifier. <br>**Narration**: "Explain our ethical AI commitment: We use Google Gemini to rewrite complex medical instructions into plain accessible language. We are honest that natural sign language has rich 3D grammar; our webcam demo recognizes documented sample signs without hallucinating." |
-| **3:00–4:00** | **Accessibility Settings & Workflow** | **Visual**: Open **Accessibility Settings**, cycle Font Size (Normal -> Large -> XL), toggle High-Contrast Dark Mode, toggle Reduced Motion. Open **Sign Learning Library**, search for 'Doctor' and 'Help', open Step-by-Step guide modal. |
-| **4:00–5:00** | **Tech Stack, Social Impact & Future Scope** | **Visual**: Show authenticated Dashboard, review the MERN + Gemini stack, explain zero-retention privacy policy (no audio/video stored), and outline future production MediaPipe model scaling. |
-
----
+| 0:00–0:30 | Introduction | Explain the communication-accessibility problem and the project's goal. |
+| 0:30–1:00 | Application overview | Open the deployed application and show the available interface. |
+| 1:00–2:00 | Communication features | Demonstrate working hand detection, text-to-speech, speech-to-text, and quick communication cards. Skip any feature that does not work reliably. |
+| 2:00–3:00 | AI and learning features | Demonstrate available learning or AI features only when they are configured and functioning. |
+| 3:00–4:00 | Accessibility | Show the accessibility options that work in the deployed version. |
+| 4:00–5:00 | Technology and limitations | Explain the technology stack, current prototype limitations, and future development plans. |
 
 ## 6. Technology Stack
 
 ### Frontend
-- **Framework**: React.js 19 with Vite 8
-- **Routing**: React Router v7
-- **Styling**: Tailwind CSS + Custom WCAG-compliant Vanilla CSS variables
-- **Icons**: Lucide React
-- **HTTP Client**: Axios with JWT Bearer interceptor
-- **Browser APIs**: Web Speech Synthesis API (`window.speechSynthesis`), Web Speech Recognition API (`window.SpeechRecognition`), HTML5 Canvas & MediaDevices WebRTC API
+- React
+- Vite
+- JavaScript
+- CSS and the styling libraries used by the project
+- React Router, where used
+- Lucide React icons, where used
+- Browser APIs for camera access, speech synthesis, and speech recognition where supported
 
 ### Backend
-- **Runtime**: Node.js v24 (ES Modules)
-- **Web Framework**: Express.js 4
-- **Authentication**: JSON Web Tokens (`jsonwebtoken`) & `bcryptjs` password hashing
-- **Input Validation**: Zod schema validation middleware
-- **Security & Reliability**: Helmet, CORS, Express Rate Limit (`express-rate-limit`), Morgan logger
+- Node.js
+- Express.js
+- JavaScript ES modules
+- Authentication, validation, security middleware, and logging as configured in the source code
 
-### Database
-- **Primary Cloud DB**: MongoDB Atlas using Mongoose 8
-- **Resilient Fallback**: In-Memory Store Adapter (ensures 100% functionality during local evaluation even prior to cloud Atlas connection)
+### Data Storage
+- The project's configured data-storage implementation
+- In-memory storage fallback where supported by the backend
 
-### Artificial Intelligence & Computer Vision
-- **Generative AI Provider**: Google Gemini API (`gemini-1.5-flash`) via backend modular service
-- **AI Tasks**: Plain-language cognitive text simplification, English-Telugu assistive translation, contextual quick message drafting
-- **Computer Vision**: Client-side HTML5 Canvas gesture centroid and landmark tracking
+### Computer Vision and AI
+- MediaPipe Tasks Vision for client-side hand landmark detection
+- Basic gesture classification logic in the frontend prototype
+- Google Gemini integration only when correctly configured and available
+
+## 7. Current Limitations
+
+1. **Limited Gesture Classification:** Basic hand-shape classification is not equivalent to full Indian Sign Language (ISL) recognition.
+2. **No Claim of Full ISL Translation:** Accurate sign-language translation requires validated data and models that account for movement, hand orientation, facial expressions, and context.
+3. **Browser Compatibility:** Camera access and speech features depend on browser support and user permissions.
+4. **AI Service Availability:** AI features that depend on external services require valid configuration and network access.
+5. **Recognition Accuracy:** No accuracy percentage is claimed without systematic testing against a suitable evaluation dataset.
+6. **Assistive Use:** The prototype should not be relied on as the sole communication method for critical medical, legal, or emergency decisions.
+
+## 8. Future Scope
+
+1. Train and evaluate a dedicated model for a clearly defined set of Indian Sign Language signs.
+2. Expand recognition to dynamic gestures and sequences using validated datasets.
+3. Improve multilingual accessibility and translation support.
+4. Develop an offline-capable Progressive Web App for low-connectivity environments.
+5. Add more sign-language learning resources reviewed by qualified contributors.
+6. Conduct usability and accessibility testing with Deaf and hard-of-hearing users.
+
+## 9. Privacy and Responsible Use
+
+Camera and microphone features should be used only with the user's permission. Before claiming that the application never stores audio or video, verify the behavior of the frontend, backend, logs, and any third-party services.
+
+The application is an assistive prototype and should be evaluated for accuracy, privacy, security, and accessibility before use in high-stakes environments.
+
+## 10. Setup Instructions
+
+For local development:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/kotaamruthavalli878-art/SignBridge-AI.git
+   cd SignBridge-AI
+   ```
+2. Install the frontend dependencies:
+   ```bash
+   cd client
+   npm install
+   ```
+3. Start the frontend using the available project script:
+   ```bash
+   npm run dev
+   ```
+4. Configure and start the backend separately using the instructions in the backend documentation and the required environment variables.
+5. Never commit API keys, passwords, or other secrets to the public repository.
+
+Check the README and deployment documentation for the project's current configuration details.
+
+## 11. Conclusion
+
+SignBridge AI explores how web technologies, computer vision, speech tools, and accessible interface design can support communication inclusion.
+
+The current project is a prototype, and its capabilities should be evaluated based on the features that work reliably in the deployed application. Future development will focus on validated sign recognition, usability, privacy, and broader accessibility.
 
 ---
-
-## 7. Limitations and Future Scope
-
-### Honest Technical Limitations
-1. **Sign Language Scope**: The active webcam recognition module is an assistive classifier trained on 9 documented essential signs (Namaste/Hello, Thank You, Help, Doctor, Water, Yes, No, I Am Deaf, Peace/OK). Natural sign languages (such as full ISL and ASL) comprise thousands of words, grammatical facial expressions, and spatial referencing that cannot be equated to single-hand gestures.
-2. **Browser Speech Recognition**: Web Speech Recognition API requires Chromium-based browsers (Google Chrome, Microsoft Edge) or Safari for native voice-to-text. Fallback notices are rendered on other browsers.
-3. **AI Fallback Mode**: When a live `GEMINI_API_KEY` is not provided in the backend `.env`, the platform automatically operates in deterministic offline heuristic mode, ensuring zero crashes while clearly notifying the user.
-
-### Future Scope
-1. **MediaPipe / TensorFlow.js Graph Integration**: Connect 21 3D hand landmarks directly to a trained deep neural network for continuous spatial sign translation.
-2. **Two-Way Video Avatar Synthesis**: Rendering 3D animated avatars that translate typed text directly into animated Indian Sign Language motions.
-3. **Offline Mobile PWA**: Packaging SignBridge AI as an offline-first Progressive Web App for rural healthcare workers with intermittent internet connectivity.
-4. **Expanded Regional Sign Dialects**: Incorporating regional Indian sign dialect variations across state education boards.
