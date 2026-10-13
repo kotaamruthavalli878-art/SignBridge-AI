@@ -16,6 +16,11 @@ import {
   Maximize2
 } from 'lucide-react';
 import { useAccessibility } from '../context/AccessibilityContext';
+import {
+  FilesetResolver,
+  HandLandmarker,
+  DrawingUtils,
+} from '@mediapipe/tasks-vision';
 
 const SUPPORTED_SIGNS = [
   { id: 'namaste', name: 'Namaste / Hello', nameTe: 'నమస్కారం', category: 'Greetings', confidenceBase: 94, gesture: 'Both palms joined or open palm wave' },
@@ -35,6 +40,7 @@ const SignToTextPage = () => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const animationFrameRef = useRef(null);
+  const handLandmarkerRef = useRef(null);
 
   const [cameraActive, setCameraActive] = useState(false);
   const [cameraError, setCameraError] = useState(null);
@@ -46,6 +52,220 @@ const SignToTextPage = () => {
   const [copied, setCopied] = useState(false);
   const [selectedDemoSign, setSelectedDemoSign] = useState(SUPPORTED_SIGNS[0]);
   const [handDetected, setHandDetected] = useState(false);
+  const gestureHistoryRef = useRef([]);
+
+  const distanceBetween = (a, b) => {
+    return Math.hypot(a.x - b.x, a.y - b.y, a.z - b.z);
+  };
+
+  const isFingerExtended = (landmarks, tipIndex, pipIndex, mcpIndex) => {
+    const tip = landmarks[tipIndex];
+    const pip = landmarks[pipIndex];
+    const mcp = landmarks[mcpIndex];
+
+    return tip.y < pip.y && pip.y < mcp.y && distanceBetween(tip, pip) > 0.03;
+  };
+
+  const classifyBasicGesture = (landmarks) => {
+    const indexExtended = isFingerExtended(landmarks, 8, 6, 5);
+    const middleExtended = isFingerExtended(landmarks, 12, 10, 9);
+    const ringExtended = isFingerExtended(landmarks, 16, 14, 13);
+    const pinkyExtended = isFingerExtended(landmarks, 20, 18, 17);
+
+    const fingerCount = [indexExtended, middleExtended, ringExtended, pinkyExtended].filter(Boolean).length;
+    const openPalm = fingerCount >= 3 && indexExtended && middleExtended && ringExtended && pinkyExtended;
+    const vSign = indexExtended && middleExtended && !ringExtended && !pinkyExtended;
+    const twoFinger = indexExtended && !middleExtended && !ringExtended && !pinkyExtended;
+    const oneFinger = indexExtended && !middleExtended && !ringExtended && !pinkyExtended;
+    const closedFist = !indexExtended && !middleExtended && !ringExtended && !pinkyExtended;
+    const thumbOpen = distanceBetween(landmarks[4], landmarks[2]) > 0.12;
+    const thumbClosed = distanceBetween(landmarks[4], landmarks[3]) < 0.065;
+    const palmCentered = Math.abs(landmarks[9].x - landmarks[0].x) < 0.35;
+    const verticalSpread = Math.abs(landmarks[8].y - landmarks[12].y) < 0.15;
+
+    if (openPalm && palmCentered) {
+      return { signId: 'namaste', confidence: 95 };
+    }
+
+    if (vSign) {
+      return { signId: 'peace', confidence: 96 };
+    }
+
+    if (twoFinger && thumbOpen && verticalSpread) {
+      return { signId: 'thank-you', confidence: 88 };
+    }
+
+    if (closedFist && !thumbOpen) {
+      return { signId: 'yes', confidence: 90 };
+    }
+
+    if (closedFist && thumbOpen) {
+      return { signId: 'help', confidence: 91 };
+    }
+
+    if (oneFinger && !thumbOpen) {
+      return { signId: 'doctor', confidence: 84 };
+    }
+
+    if (!indexExtended && !middleExtended && ringExtended && pinkyExtended && thumbOpen) {
+      return { signId: 'water', confidence: 82 };
+    }
+
+    if (indexExtended && middleExtended && !ringExtended && !pinkyExtended && thumbClosed) {
+      return { signId: 'no', confidence: 87 };
+    }
+
+    if (twoFinger && !thumbOpen) {
+      return { signId: 'i-am-deaf', confidence: 79 };
+    }
+
+    return null;
+  };
+
+  const getMostFrequentGesture = (history) => {
+    if (!history || history.length === 0) return null;
+
+    const counts = history.reduce((acc, sign) => {
+      acc[sign] = (acc[sign] || 0) + 1;
+      return acc;
+    }, {});
+
+    let bestSign = null;
+    let highestCount = 0;
+
+    for (const [sign, count] of Object.entries(counts)) {
+      if (count > highestCount) {
+        highestCount = count;
+        bestSign = sign;
+      }
+    }
+
+    return bestSign;
+  };
+
+  const getAverageConfidence = (history, targetSignId) => {
+    if (!history || history.length === 0) return 0;
+
+    const relevant = history.filter((item) => item.signId === targetSignId);
+    if (relevant.length === 0) return 0;
+
+    const average = relevant.reduce((sum, item) => sum + item.confidence, 0) / relevant.length;
+    return Math.max(70, Math.min(99, Math.round(average)));
+  };
+
+
+  const initializeHandLandmarker = async () => {
+    if (handLandmarkerRef.current) {
+      return handLandmarkerRef.current;
+    }
+
+    const vision = await FilesetResolver.forVisionTasks(
+      'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm'
+    );
+
+    const landmarker = await HandLandmarker.createFromOptions(vision, {
+      baseOptions: {
+        modelAssetPath: '/models/hand_landmarker.task',
+        delegate: 'GPU',
+      },
+      runningMode: 'VIDEO',
+      numHands: 2,
+    });
+
+    handLandmarkerRef.current = landmarker;
+    return landmarker;
+  };
+
+  
+const processRealHandFrame = () => {
+  const video = videoRef.current;
+  const canvas = canvasRef.current;
+  const landmarker = handLandmarkerRef.current;
+
+  if (!video || !canvas || !landmarker) return;
+
+  if (video.readyState < 2) {
+    animationFrameRef.current = requestAnimationFrame(
+      processRealHandFrame
+    );
+    return;
+  }
+
+  const ctx = canvas.getContext('2d');
+
+  if (!ctx) return;
+
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const result = landmarker.detectForVideo(
+    video,
+    performance.now()
+  );
+
+  if (result.landmarks.length > 0) {
+    setHandDetected(true);
+
+    const drawingUtils = new DrawingUtils(ctx);
+    let bestMatch = null;
+
+    for (const landmarks of result.landmarks) {
+      drawingUtils.drawConnectors(
+        landmarks,
+        HandLandmarker.HAND_CONNECTIONS,
+        { color: '#2dd4bf', lineWidth: 3 }
+      );
+
+      drawingUtils.drawLandmarks(landmarks, {
+        color: '#f43f5e',
+        lineWidth: 1,
+        radius: 4,
+      });
+
+      const detectedGesture = classifyBasicGesture(landmarks);
+      if (!detectedGesture) continue;
+
+      if (!bestMatch || detectedGesture.confidence > bestMatch.confidence) {
+        bestMatch = detectedGesture;
+      }
+    }
+
+    if (bestMatch) {
+      gestureHistoryRef.current.push(bestMatch);
+      if (gestureHistoryRef.current.length > 8) {
+        gestureHistoryRef.current.shift();
+      }
+
+      const stableSign = getMostFrequentGesture(gestureHistoryRef.current.map((item) => item.signId));
+      const matchedSign = SUPPORTED_SIGNS.find((sign) => sign.id === stableSign);
+
+      if (matchedSign) {
+        const smoothConfidence = getAverageConfidence(gestureHistoryRef.current, matchedSign.id);
+        setActiveSign(matchedSign);
+        setConfidence(smoothConfidence);
+      } else {
+        setActiveSign(null);
+        setConfidence(0);
+      }
+    } else {
+      gestureHistoryRef.current = [];
+      setActiveSign(null);
+      setConfidence(0);
+    }
+  } else {
+    gestureHistoryRef.current = [];
+    setHandDetected(false);
+    setActiveSign(null);
+    setConfidence(0);
+  }
+
+  animationFrameRef.current = requestAnimationFrame(
+    processRealHandFrame
+  );
+};
+
 
   // Start webcam
   const startCamera = async () => {
@@ -62,12 +282,32 @@ const SignToTextPage = () => {
 
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
-        videoRef.current.onloadedmetadata = () => {
-          videoRef.current.play();
-          setCameraActive(true);
-          setPermissionState('granted');
-          startVisionTracking();
-        };
+        
+if (videoRef.current) {
+  videoRef.current.srcObject = stream;
+
+  videoRef.current.onloadedmetadata = async () => {
+    try {
+      await videoRef.current.play();
+      await initializeHandLandmarker();
+
+      setCameraActive(true);
+      setPermissionState('granted');
+
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+
+      processRealHandFrame();
+    } catch (error) {
+      console.error('Hand detector initialization failed:', error);
+      setCameraError(
+        `Could not initialize hand detection: ${error.message}`
+      );
+    }
+  };
+}
+
       }
     } catch (err) {
       console.error('Camera access error:', err);
@@ -88,6 +328,12 @@ const SignToTextPage = () => {
     if (animationFrameRef.current) {
       cancelAnimationFrame(animationFrameRef.current);
     }
+    
+    if (handLandmarkerRef.current) {
+      handLandmarkerRef.current.close();
+      handLandmarkerRef.current = null;
+    }
+
     if (videoRef.current && videoRef.current.srcObject) {
       const tracks = videoRef.current.srcObject.getTracks();
       tracks.forEach((track) => track.stop());
@@ -100,94 +346,7 @@ const SignToTextPage = () => {
   };
 
   // Real-time canvas computer vision overlay tracking
-  const startVisionTracking = useCallback(() => {
-    let frameCount = 0;
-
-    const processFrame = () => {
-      if (!videoRef.current || !canvasRef.current || !cameraActive) return;
-
-      const video = videoRef.current;
-      const canvas = canvasRef.current;
-      const ctx = canvas.getContext('2d');
-
-      if (video.readyState === video.HAVE_ENOUGH_DATA) {
-        canvas.width = video.videoWidth || 640;
-        canvas.height = video.videoHeight || 480;
-
-        // Draw video frame to canvas
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Simple computer vision contour/motion tracker simulation overlay
-        frameCount++;
-
-        // Draw tracking bounding box and simulated landmark mesh
-        const centerX = canvas.width / 2;
-        const centerY = canvas.height / 2;
-        const boxSize = 220;
-
-        // Draw gesture target box
-        ctx.strokeStyle = '#14b8a6';
-        ctx.lineWidth = 2;
-        ctx.setLineDash([8, 6]);
-        ctx.strokeRect(centerX - boxSize / 2, centerY - boxSize / 2, boxSize, boxSize);
-        ctx.setLineDash([]);
-
-        // Target box label
-        ctx.fillStyle = '#14b8a6';
-        ctx.font = '12px Inter, sans-serif';
-        ctx.fillText('GESTURE TRACKING ZONE', centerX - boxSize / 2 + 8, centerY - boxSize / 2 - 8);
-
-        // Simulated landmarks
-        const handFound = true;
-        setHandDetected(true);
-
-        if (handFound && selectedDemoSign) {
-          // Draw tracking points inside target box
-          const points = [
-            { x: centerX, y: centerY + 60 },
-            { x: centerX - 30, y: centerY + 20 },
-            { x: centerX - 40, y: centerY - 30 },
-            { x: centerX - 15, y: centerY - 60 },
-            { x: centerX + 15, y: centerY - 65 },
-            { x: centerX + 35, y: centerY - 40 },
-            { x: centerX + 45, y: centerY },
-          ];
-
-          ctx.fillStyle = '#2dd4bf';
-          ctx.strokeStyle = 'rgba(45, 212, 191, 0.4)';
-          ctx.lineWidth = 1.5;
-
-          // Connect points
-          ctx.beginPath();
-          points.forEach((pt, idx) => {
-            if (idx === 0) ctx.moveTo(pt.x, pt.y);
-            else ctx.lineTo(pt.x, pt.y);
-          });
-          ctx.stroke();
-
-          // Draw node circles
-          points.forEach((pt) => {
-            ctx.beginPath();
-            ctx.arc(pt.x, pt.y, 4, 0, 2 * Math.PI);
-            ctx.fill();
-          });
-
-          // Periodic recognition update
-          if (frameCount % 45 === 0) {
-            const jitter = Math.floor(Math.random() * 5) - 2;
-            const currentConfidence = Math.min(99, Math.max(75, selectedDemoSign.confidenceBase + jitter));
-            setActiveSign(selectedDemoSign);
-            setConfidence(currentConfidence);
-            setUncertaintyNotice(null);
-          }
-        }
-      }
-
-      animationFrameRef.current = requestAnimationFrame(processFrame);
-    };
-
-    animationFrameRef.current = requestAnimationFrame(processFrame);
-  }, [cameraActive, selectedDemoSign]);
+  
 
   // Clean up on unmount
   useEffect(() => {

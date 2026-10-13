@@ -164,20 +164,35 @@ export const store = {
       return await SignLibrary.find(query).sort({ signName: 1 }).exec();
     }
 
+    
     let list = Array.from(memoryStore.signs.values());
+
     if (category && category !== 'all') {
       list = list.filter((s) => s.category === category);
     }
+
     if (search && search.trim() !== '') {
-      const sLower = search.toLowerCase().trim();
-      list = list.filter((s) =>
-        s.signName.toLowerCase().includes(sLower) ||
-        (s.signNameTelugu && s.signNameTelugu.toLowerCase().includes(sLower)) ||
-        s.meaning.toLowerCase().includes(sLower) ||
-        s.gesturesDescription.toLowerCase().includes(sLower)
+      const sLower = search.trim().toLowerCase();
+
+      const searchableFields = (sign) => [
+        sign.signName,
+        sign.signNameTelugu,
+        sign.meaning,
+        sign.gesturesDescription,
+        sign.signId,
+        sign.category,
+        sign.supportedLanguage,
+      ]
+        .filter((value) => value != null)
+        .map((value) => String(value).toLowerCase());
+
+      list = list.filter((sign) =>
+        searchableFields(sign).some((value) => value.includes(sLower))
       );
     }
+
     return list;
+
   },
 
   async getSignById(idOrSignId) {
