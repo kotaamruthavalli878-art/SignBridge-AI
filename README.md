@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # SignBridge AI — AI for Accessibility & Sign Language Inclusion
 
 [![Node.js](https://img.shields.io/badge/Node.js-v24.x-green.svg)](https://nodejs.org/)
@@ -208,3 +209,6 @@ npm run build:client
 ## 📄 License
 
 This project is licensed under the MIT License — open-source for accessibility and inclusion.
+=======
+# SignBridge-AI
+>>>>>>> 04b42c0b52adba32c9f150b789108f885039d147
